@@ -29,7 +29,7 @@ The Poisson distribution is the discrete probability distribution of the number 
 ![image](https://user-images.githubusercontent.com/103921593/230282876-f4a5afbf-cac1-4648-a1b0-c78840638a8e.png)
 
 # Program :
-Name: V.Siri Sai
+```Name: V.Siri Sai
 Reg no: 212225240181
 import numpy as np
 import math
@@ -79,6 +79,7 @@ if chi_sq < critical:
     print("The given data fits Poisson Distribution at 1% LOS")
 else:
     print("The given data does not fit Poisson Distribution at 1% LOS")
+```
 
 # Output : 
 
