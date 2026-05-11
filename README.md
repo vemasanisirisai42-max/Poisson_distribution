@@ -29,11 +29,60 @@ The Poisson distribution is the discrete probability distribution of the number 
 ![image](https://user-images.githubusercontent.com/103921593/230282876-f4a5afbf-cac1-4648-a1b0-c78840638a8e.png)
 
 # Program :
+Name: V.Siri Sai
+Reg no: 212225240181
+import numpy as np
+import math
+from scipy.stats import chi2
 
- 
+data = list(map(int, input("Enter observations: ").split()))
+
+data = np.array(data)
+
+max_x = max(data)
+
+obs = [np.sum(data == x) for x in range(max_x + 1)]
+
+N = sum(obs)
+
+mean = sum(x * obs[x] for x in range(len(obs))) / N
+
+print("\n x   P(x)   Obs.Fr   Exp.Fr    Xi")
+print("=====================================")
+
+chi_sq = 0
+
+for x in range(len(obs)):
+
+    p = math.exp(-mean) * (mean ** x) / math.factorial(x)
+
+    exp = N * p
+
+    if exp > 0:
+        xi = (obs[x] - exp) ** 2 / exp
+        chi_sq += xi
+    else:
+        xi = 0
+
+    print(f"{x:2d}   {p:0.3f}     {obs[x]:2d}      {exp:0.2f}     {xi:0.2f}")
+
+print("=====================================")
+
+df = max_x - 1
+
+critical = chi2.ppf(0.99, df)
+
+print("\nCalculated Chi-square value =", round(chi_sq, 2))
+print("Table value at 1% LOS =", round(critical, 2))
+
+if chi_sq < critical:
+    print("The given data fits Poisson Distribution at 1% LOS")
+else:
+    print("The given data does not fit Poisson Distribution at 1% LOS")
 
 # Output : 
 
+<img width="716" height="345" alt="image" src="https://github.com/user-attachments/assets/ad359db1-a060-4e93-88a5-a462b6cdb568" />
 
 
 # Results
